@@ -29,6 +29,33 @@ function openModal(edit = false, index = 0) {
     }
     
   }
+  function editItem(index) {
+
+    openModal(true, index)
+  }
+  
+  function deleteItem(index) {
+    itens.splice(index, 1)
+    setItensBD()
+    loadItens()
+  }
+  
+  function insertItem(item, index) {
+    let tr = document.createElement('tr')
+  
+    tr.innerHTML = `
+      <td>${item.nome}</td>
+      <td>${item.funcao}</td>
+      <td>R$ ${item.salario}</td>
+      <td class="acao">
+        <button onclick="editItem(${index})"><i class='bx bx-edit' ></i></button>
+      </td>
+      <td class="acao">
+        <button onclick="deleteItem(${index})"><i class='bx bx-trash'></i></button>
+      </td>
+    `
+    tbody.appendChild(tr)
+  }
   
   btnSalvar.onclick = e => {
   
